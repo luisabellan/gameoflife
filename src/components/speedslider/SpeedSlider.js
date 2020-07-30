@@ -7,7 +7,9 @@ const SpeedSlider = ({ speed, onSpeedChange }) => {
 
   return (
     <div className="sliders">
+    <label for="speedslider">Speed:</label>
       <input
+        id="speedslider"
         type="range"
         name="speed"
         min="1"

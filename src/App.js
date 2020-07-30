@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Board from './components/board/Board'
 import SpeedSlider from './components/speedslider/SpeedSlider'
-
+import RowsSlider from './components/size-sliders/RowsSlider'
+import ColsSlider from './components/size-sliders//ColsSlider'
 const totalBoardColumns = 25
 const totalBoardRows = 25
 
@@ -15,47 +16,6 @@ const NewBoardStatus = (cellStatus = () => Math.random() < 0.5) => {
     }
   }
   return grid;
-};
-
-
-
-
-// 
-
-const RowsSlider = ({ rows, onRowsChange }) => {
-  const handleChange = (e) => onRowsChange(e.target.value);
-
-  return (
-    <div className="sliders">
-      <input
-        type="range"
-        name="size"
-        min="25"
-        max="100"
-        step="5"
-        value={(rows)}
-        onChange={handleChange}
-      />
-    </div>
-  );
-};
-
-const ColsSlider = ({ cols, onColsChange }) => {
-  const handleChange = (e) => onColsChange(e.target.value);
-
-  return (
-    <div className="sliders">
-      <input
-        type="range"
-        name="size"
-        min="25"
-        max="100"
-        step="5"
-        value={(cols)}
-        onChange={handleChange}
-      />
-    </div>
-  );
 };
 
 
@@ -240,26 +200,25 @@ class App extends Component {
       <div className='wrapper'>
         <h1>Connaway&apos;s Game of Life</h1>
         <h2>{`Generation: ${generation}`}</h2>
-        <Board
-          rows={rows}
-          cols={cols}
-          boardStatus={boardStatus}
-          onToggleCellStatus={this.handleToggleCellStatus}
-        />
+
+        <div className='board'>
+          <Board
+            rows={rows}
+            cols={cols}
+            boardStatus={boardStatus}
+            onToggleCellStatus={this.handleToggleCellStatus}
+          />
+        </div>
+
         <div className="sliders">
-          <label for="speedslider">Speed:</label>
-          <SpeedSlider id="speedslider" speed={speed} onSpeedChange={this.handleSpeedChange} />
-                
-       
-            
-          <label for="rowslider">Rows:</label>
-          <RowsSlider id="rowslider" rows={rows} onRowsChange={this.handleRowsChange} />
-         
-          <label for="colslider">Cols:</label>
-          <ColsSlider id="colslider" cols={cols} onColsChange={this.handleColsChange} />
+          
+          <SpeedSlider speed={speed} onSpeedChange={this.handleSpeedChange} />
+          <RowsSlider rows={rows} onRowsChange={this.handleRowsChange} />
+          <ColsSlider cols={cols} onColsChange={this.handleColsChange} />
            
        
         </div>
+
         <div className="buttons">
           {this.startStop()}
           <button
