@@ -39,7 +39,7 @@ class App extends Component {
 	startStop = () => {
 		return this.state.isGameRunning ? (
 			<button className="button" type="button" onClick={this.handleStop}>
-				Stop
+      <p>Stop</p>
 			</button>
 		) : (
 				<button className="button" type="button" onClick={this.handleRun}>
@@ -240,10 +240,10 @@ class App extends Component {
           </button>
           
           <button className="button" type="button" onClick={this.clear}>
-            <p>Clear Board</p>
+            <p>Clear</p>
           </button>
           <button className="button" type="button" onClick={this.handleNewBoard}>
-            <p>New Board</p>
+            <p>New</p>
           </button>
         </div>
 
