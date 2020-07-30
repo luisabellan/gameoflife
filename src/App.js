@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import Board from './components/board/Board'
 import SpeedSlider from './components/speedslider/SpeedSlider'
 import RowsSlider from './components/size-sliders/RowsSlider'
-import ColsSlider from './components/size-sliders//ColsSlider'
-const totalBoardColumns = 25
-const totalBoardRows = 25
+import ColsSlider from './components/size-sliders/ColsSlider'
 
-const NewBoardStatus = (cellStatus = () => Math.random() < 0.5) => {
+const totalBoardRows = 25
+const totalBoardColumns = 25
+
+const NewBoardStatus = (rows, cols, cellStatus = () => Math.random() < 0.5) => {
+
+
 
   const grid = [];
   for (let r = 0; r < totalBoardRows; r++) {
@@ -29,19 +32,18 @@ class App extends Component {
 		boardStatus: NewBoardStatus(),
 		generation: 0,
 		isGameRunning: false,
-    speed: 900,
-    totalBoardRows: 25,
-    totalBoardColumns: 25
+    speed: 900
+   
 	};
 
 	startStop = () => {
 		return this.state.isGameRunning ? (
-			<button type="button" onClick={this.handleStop}>
+			<button className="button" type="button" onClick={this.handleStop}>
 				Stop
 			</button>
 		) : (
-				<button type="button" onClick={this.handleRun}>
-					Start
+				<button className="button" type="button" onClick={this.handleRun}>
+					<p>Start</p>
 				</button>
 			);
 	};
@@ -53,11 +55,11 @@ class App extends Component {
 		});
 	};
 
-	handleNewBoard = (size=25) => {
+	handleNewBoard = () => {
 		this.setState({
 			boardStatus: NewBoardStatus(),
       generation: 0,
-      size:size
+     
 		});
 	};
 
@@ -226,22 +228,36 @@ class App extends Component {
             disabled={isGameRunning}
             onClick={this.handleStep}
           >
-						Step
+						<p>Step</p>
           </button>
 
          
 
-          <button type="button" disabled={isGameRunning}
+          <button className="button" type="button" disabled={isGameRunning}
           onClick={this.handleNSteps}>
-          10 Steps
+          <p>10 Steps</p>
           </button>
           
-          <button type="button" onClick={this.clear}>
-            Clear Board
+          <button className="button" type="button" onClick={this.clear}>
+            <p>Clear Board</p>
           </button>
-          <button type="button" onClick={this.handleNewBoard}>
-            New Board
+          <button className="button" type="button" onClick={this.handleNewBoard}>
+            <p>New Board</p>
           </button>
+        </div>
+
+
+        <div className="about">
+        <h1>About</h1>
+        <p>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</p>
+        </div>
+        <div className="rules">
+          <h1>Rules</h1>
+          <ol>
+            <li>Any live cell with two or three live neighbours survives.</li>
+            <li>Any dead cell with three live neighbours becomes a live cell.</li>
+            <li>All other live cells die in the next generation. Similarly, all other dead cells stay dead.</li>
+          </ol>
         </div>
       </div>
     );
