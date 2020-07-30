@@ -190,7 +190,7 @@ label {
 .rules{
   display: flex;
   flex-direction: column;
-  align-self: center;
+  align-content: center;
   text-align: justify;
   line-height: 1.5rem;
   margin: 0 auto;
@@ -206,4 +206,8 @@ h1{
 .board {
   width: 80%;
   margin: 0 auto;
+}
+
+ol {
+  margin-right: 2rem;
 }
