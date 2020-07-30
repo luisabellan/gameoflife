@@ -7,7 +7,7 @@ import ColsSlider from './components/size-sliders/ColsSlider'
 const totalBoardRows = 25
 const totalBoardColumns = 25
 
-const NewBoardStatus = (rows, cols, cellStatus = () => Math.random() < 0.5) => {
+const NewBoardStatus = (cellStatus = () => Math.random() < 0.5) => {
 
 
 
@@ -224,6 +224,7 @@ class App extends Component {
         <div className="buttons">
           {this.startStop()}
           <button
+          className="button"
             type="button"
             disabled={isGameRunning}
             onClick={this.handleStep}

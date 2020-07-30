@@ -60,14 +60,14 @@ td {
   width: 90%;
  
 }
-button {
+.button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   border: none;
   outline: none;
   border-radius: 20px;
-  font-size: 18px;
+  font-size: 1.2rem;
   color: $color;
   margin-right: 2rem;
   margin-bottom: 1rem;
