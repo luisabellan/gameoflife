@@ -20,20 +20,38 @@ const NewBoardStatus = (cellStatus = () => Math.random() < 0.5) => {
 
 
 
-// TODO: add size slider here
+// 
 
-const SizeSlider = ({ size, onSizeChange }) => {
-  const handleChange = (e) => onSizeChange(e.target.value);
+const RowsSlider = ({ rows, onRowsChange }) => {
+  const handleChange = (e) => onRowsChange(e.target.value);
 
   return (
     <div className="sliders">
       <input
         type="range"
         name="size"
-        min="1"
-        max="1000"
+        min="25"
+        max="100"
         step="5"
-        value={(size)}
+        value={(rows)}
+        onChange={handleChange}
+      />
+    </div>
+  );
+};
+
+const ColsSlider = ({ cols, onColsChange }) => {
+  const handleChange = (e) => onColsChange(e.target.value);
+
+  return (
+    <div className="sliders">
+      <input
+        type="range"
+        name="size"
+        min="25"
+        max="100"
+        step="5"
+        value={(cols)}
         onChange={handleChange}
       />
     </div>
@@ -178,8 +196,13 @@ class App extends Component {
   handleSpeedChange = (newSpeed) => {
     this.setState({ speed: newSpeed });
   };
-  handleSizeChange = (newRows, newCols) => {
-    this.setState({ rows: newRows, cols: newCols });
+
+  handleRowsChange = (newRows) => {
+    this.setState({ rows: newRows });
+  };
+
+  handleColsChange = (newCols) => {
+    this.setState({ cols: newCols });
   };
 
 
@@ -194,15 +217,16 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { isGameRunning, speed, rows, cols } = this.state;
     const speedChanged = prevState.speed !== speed;
-    const sizeChanged = prevState.rows !== rows || prevState.cols !== cols;
+    const rowsChanged = prevState.rows !== rows;
+    const colsChanged = prevState.cols !== cols;
     const gameStarted = !prevState.isGameRunning && isGameRunning;
     const gameStopped = prevState.isGameRunning && !isGameRunning;
 
-    if ((isGameRunning && speedChanged) || gameStopped) {
+    if ((isGameRunning && speedChanged && rowsChanged && colsChanged) || gameStopped) {
       clearInterval(this.timerID);
     }
 
-    if ((isGameRunning && speedChanged) || gameStarted) {
+    if ((isGameRunning && speedChanged && rowsChanged && colsChanged) || gameStarted) {
       this.timerID = setInterval(() => {
         this.handleStep();
       }, speed);
@@ -222,20 +246,19 @@ class App extends Component {
           boardStatus={boardStatus}
           onToggleCellStatus={this.handleToggleCellStatus}
         />
-        <div className="upperControls">
-          <label>Speed:</label>
-          <span>
-            
-            <SpeedSlider speed={speed} onSpeedChange={this.handleSpeedChange} />
-          </span>
-        
+        <div className="sliders">
+          <label for="speedslider">Speed:</label>
+          <SpeedSlider id="speedslider" speed={speed} onSpeedChange={this.handleSpeedChange} />
+                
        
-          <label>Size:</label>
-          <span>
             
-            <SizeSlider rows={rows}  cols={cols}  onSizeChange={this.handleSizeChange} />
+          <label for="rowslider">Rows:</label>
+          <RowsSlider id="rowslider" rows={rows} onRowsChange={this.handleRowsChange} />
+         
+          <label for="colslider">Cols:</label>
+          <ColsSlider id="colslider" cols={cols} onColsChange={this.handleColsChange} />
            
-          </span>
+       
         </div>
         <div className="buttons">
           {this.startStop()}
