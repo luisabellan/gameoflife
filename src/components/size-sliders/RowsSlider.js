@@ -10,11 +10,11 @@ const RowsSlider = ({ rows, onRowsChange }) => {
       <input
         id="rowslider"
         type="range"
-        name="size"
+        name="rows"
         min="25"
         max="100"
         step="5"
-        value={(rows)}
+        value={rows}
         onChange={handleChange}
       />
     </div>

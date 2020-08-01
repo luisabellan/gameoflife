@@ -215,10 +215,10 @@ class App extends Component {
         <div className="sliders">
           
           <SpeedSlider speed={speed} onSpeedChange={this.handleSpeedChange} />
-          <RowsSlider rows={rows} onRowsChange={this.handleRowsChange} />
+          {/* <RowsSlider rows={rows} onRowsChange={this.handleRowsChange} />
           <ColsSlider cols={cols} onColsChange={this.handleColsChange} />
            
-       
+        */}
         </div>
 
         <div className="buttons">
