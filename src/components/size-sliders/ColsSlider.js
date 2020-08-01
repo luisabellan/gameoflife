@@ -10,7 +10,7 @@ const ColsSlider = ({ cols, onColsChange }) => {
       <input
         id="colslider"
         type="range"
-        name="size"
+        name="cols"
         min="25"
         max="100"
         step="5"
