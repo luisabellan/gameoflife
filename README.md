@@ -33,3 +33,5 @@ The Game of Life, also known simply as Life, is a cellular automaton devised by 
 ## Deployment
 
 https://gameoflifexx37.netlify.app
+
+
